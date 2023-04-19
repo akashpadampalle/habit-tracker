@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>
+        <% if(locals.title) { %> 
+            <%= locals.title %>
+        <% } else { %>
+            Habit Tracker
+        <% } %>
+    </title>
+
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <%- style %> <!-- style from body will come here-->
+</head>
+<body>
+    <%- include('_header') %>
+    <%- body %>
+    <%- include('_footer') %>
+
+    <%- script %> <!-- script from body will come here -->
+</body>
+</html>

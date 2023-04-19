@@ -1,0 +1,11 @@
+<link rel="stylesheet" href="/css/style.css">
+<main id="main-body">
+    <% if (locals.user) { %>
+       <h1> <%= user.name %> </h1>
+    <% } else { %>
+        <div>
+            <a href="/login"> Login </a>
+            <a href="/signup"> Signup </a>
+        </div>
+    <% } %>
+</main>

@@ -5,7 +5,7 @@ const habitSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    user: {
+    userId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'user',
         required: true
