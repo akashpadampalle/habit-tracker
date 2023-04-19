@@ -1,7 +1,12 @@
 const Habit = require('../models/habit');
 
-function validateRecord() { }
-
+/** 
+ * controller action to create Habit
+ * takes title from user and user id from request
+ * create records of previous  7 days (non editable)
+ * return an json object with created habit 
+ * if error accurs it returns json object with empty data 
+*/
 module.exports.create = function (req, res) {
 
     try {
@@ -22,10 +27,8 @@ module.exports.create = function (req, res) {
             records.unshift({ date: date });
         }
 
-        const newHabit = Habit.create({ title, userId, records });
-
-        console.log(newHabit);
-
+        const newHabit = Habit.create({ title, userId, records }); // adding habit DB
+        
         res.json(200, {
             message: 'habit has been created',
             data: [newHabit],
