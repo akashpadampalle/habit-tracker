@@ -2,6 +2,11 @@
 <main id="main-body">
     <% if (locals.user) { %>
        <h1> <%= user.name %> </h1>
+       <%- include('form_create_habit.ejs') %>
+       <ol id="habit-list">
+       </ol>
+
+       <script src="/js/main.js"></script>
     <% } else { %>
         <div>
             <a href="/login"> Login </a>

@@ -1,12 +1,12 @@
 <div id="layout-header">
-    <a href="/">Codial</a>
+    <a href="/">Habit tracker</a>
 
     <% if(locals.user) { %>
         <div>
             <span> <% user.name %> </span>
 
             <!-- TODO:  change the signout link-->
-            <a href=""> logout </a>
+            <a href="/logout"> logout </a>
         </div>
     <% } %>
 </div>

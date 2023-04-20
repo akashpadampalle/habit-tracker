@@ -8,3 +8,7 @@
 #main-body{
     min-height: 94vh;
 }
+
+.d-flex{
+    display: flex;
+}
