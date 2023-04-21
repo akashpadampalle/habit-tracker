@@ -1,7 +1,7 @@
 const habitList = document.querySelector('#habit-list');
 
 async function main(){
-    const response = await fetch('/get-habits');
+    const response = await fetch('/habits/get');
     const data = await response.json();
 
     if(data.message == "successfully fetched habits"){

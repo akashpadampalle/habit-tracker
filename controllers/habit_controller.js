@@ -64,8 +64,8 @@ module.exports.create = async function (req, res) {
 module.exports.get = async function (req, res) {
     try {
 
-        const userId = req.user.id;
-        const habits = await Habit.find({ userId: userId });
+        const uid = req.user.id;
+        const habits = await Habit.find({ userId: uid });
         await validateHabits(habits);
 
         res.status(200).json({
@@ -92,6 +92,7 @@ module.exports.get = async function (req, res) {
  * so we can send it to user (only last 7 records)
  */
 async function validateHabits(habits) {
+    console.log('validating habits');
     for (let i = 0; i < habits.length; i++) {
         const records = await habitRecordCorrection(habits[i].records, habits[i].id);
         habits[i].records = records;
@@ -110,7 +111,7 @@ async function habitRecordCorrection(records, habitId) {
 
     const today = (new Date()).setHours(0, 0, 0, 0); // date without extra time
     const oneDayMilliSec = 1000 * 60 * 60 * 24;
-    let newDate = records[records.length - 1].date + oneDayMilliSec;
+    let newDate = records[records.length - 1].date.getTime() + oneDayMilliSec;
 
     while (newDate <= today) {
         await Habit.findByIdAndUpdate(habitId, { $push: { records: { date: newDate } } });
@@ -126,6 +127,7 @@ async function habitRecordCorrection(records, habitId) {
  * and return last 7 elements
  */
 async function returnLastSevenEntries(arr) {
+    console.log('getting last sending last entries');
     if (arr.length < 7) { throw new Error('given array is smaller than 7 entries'); }
     let finalArr = [];
     for (let i = arr.length - 7; i < arr.length; i++) { finalArr.push(arr[i]); }
