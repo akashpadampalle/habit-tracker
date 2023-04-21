@@ -92,7 +92,6 @@ module.exports.get = async function (req, res) {
  * so we can send it to user (only last 7 records)
  */
 async function validateHabits(habits) {
-    console.log('validating habits');
     for (let i = 0; i < habits.length; i++) {
         const records = await habitRecordCorrection(habits[i].records, habits[i].id);
         habits[i].records = records;
@@ -127,7 +126,6 @@ async function habitRecordCorrection(records, habitId) {
  * and return last 7 elements
  */
 async function returnLastSevenEntries(arr) {
-    console.log('getting last sending last entries');
     if (arr.length < 7) { throw new Error('given array is smaller than 7 entries'); }
     let finalArr = [];
     for (let i = arr.length - 7; i < arr.length; i++) { finalArr.push(arr[i]); }
@@ -149,7 +147,7 @@ module.exports.updateTitle = async function (req, res) {
             });
         }
 
-        const updatedHabit = await Habit.findByIdAndUpdate(habitId,{title: newTitle});
+        const updatedHabit = await Habit.findByIdAndUpdate(habitId, { title: newTitle });
 
         return res.status(200).json({
             message: "successfully changed title",
@@ -166,5 +164,51 @@ module.exports.updateTitle = async function (req, res) {
         });
     }
 
+}
+
+
+module.exports.updateStatus = async function (req, res) {
+    try {
+        const { newStatus, habitId, recordsId } = req.body;
+        const userId = req.user.id;
+
+        if(!newStatus || !habitId || !recordsId){
+            return res.status(400).json({
+                message: "insufficient data",
+                status: "failure",
+                data: []
+            });
+        }
+
+        const habit = await Habit.findById(habitId);
+        const isRecordBelongToHabit = habit.records.some(record => record.id == recordsId);
+
+        if (!isRecordBelongToHabit || userId != habit.userId) {
+            return res.status(401).json({
+                message: "unauthorized request",
+                status: "failure",
+                data: []
+            });
+        }
+
+
+        
+
+        const newRecord = await Habit.updateOne({_id: habitId, 'records._id': recordsId},{$set: {'records.$.status': newStatus}});
+
+        return res.status(200).json({
+            message: "successfully changed status",
+            status: "successfull",
+            data: [newRecord]
+        });
+
+    } catch (error) {
+        console.log("ERROR: Update status", error);
+        return res.status(500).json({
+            message: "internal server error",
+            status: "failure",
+            data: []
+        })
+    }
 }
 
