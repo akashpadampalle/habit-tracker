@@ -109,8 +109,8 @@ async function validateHabits(habits) {
 async function habitRecordCorrection(records, habitId) {
 
     const today = (new Date()).setHours(0, 0, 0, 0); // date without extra time
-    const oneDayMilliSec = 1000 * 60 * 60 * 24;
-    let newDate = records[records.length - 1].date.getTime() + oneDayMilliSec;
+    const oneDayMilliSec = 1000 * 60 * 60 * 24; // one day time in millisecond
+    let newDate = records[records.length - 1].date.getTime() + oneDayMilliSec; // last record date + one day
 
     while (newDate <= today) {
         await Habit.findByIdAndUpdate(habitId, { $push: { records: { date: newDate } } });
@@ -132,7 +132,14 @@ async function returnLastSevenEntries(arr) {
     return finalArr;
 }
 
-
+/**
+ * updateTitle action is use to update the title of habit
+ * takes new title and habit id from request body and user id from user (passport -> request)
+ * first we check the requesting user and ower of habit are same if not we send respose from here unauthorise access
+ * if both users are same then we find the habit and update its title 
+ * and return updated habit in the form of json
+ * if error accures in all of the above situation we send json response with message internal server error
+ */
 module.exports.updateTitle = async function (req, res) {
     try {
         const { newTitle, habitId } = req.body;
@@ -147,7 +154,8 @@ module.exports.updateTitle = async function (req, res) {
             });
         }
 
-        const updatedHabit = await Habit.findByIdAndUpdate(habitId, { title: newTitle });
+        //herer {new: true} -> returns newly updated habit
+        const updatedHabit = await Habit.findByIdAndUpdate(habitId, { title: newTitle }, {new: true});
 
         return res.status(200).json({
             message: "successfully changed title",
@@ -166,7 +174,16 @@ module.exports.updateTitle = async function (req, res) {
 
 }
 
-
+/**
+ * updateStatus action is use to update ( habit -> records -> record -> status )
+ * first we takes new status, habit id and record id from the request body and id from request user (given by passport)
+ * checking any of the above field is empty if it empty return respose with message insuffiecient data
+ * then we find habit into DB using habit id by using this habit we find out our record and get record date from there
+ * in any case we didn't find habit or user id of habit doesn't match with requested user we send response with unauthorised request
+ * if everything is corret then we check is record editable [if record is created before habit creation or record is older than 7 days then it is not editable]
+ * if record is not editable then we send response with message not allowed to update
+ * if everything goes according to plan we update status of record and send response accordingly
+ */
 module.exports.updateStatus = async function (req, res) {
     try {
         const { newStatus, habitId, recordsId } = req.body;
@@ -180,8 +197,17 @@ module.exports.updateStatus = async function (req, res) {
             });
         }
 
+        let recordDate = undefined;
         const habit = await Habit.findById(habitId);
-        const isRecordBelongToHabit = habit.records.some(record => record.id == recordsId);
+        // some method loops over every record return true if any of record.id is equal to recordsId
+        const isRecordBelongToHabit = habit.records.some((record) => {
+            if(record.id == recordsId){
+                recordDate = record.date.getTime(); //taking record date and converting into milliseconds
+                return true;
+            }
+
+            return false;
+        });
 
         if (!isRecordBelongToHabit || userId != habit.userId) {
             return res.status(401).json({
@@ -191,9 +217,19 @@ module.exports.updateStatus = async function (req, res) {
             });
         }
 
+        const today = (new Date()).setHours(0,0,0,0); // date without extra hours
+        const habitCreationDate = habit.createdAt.setHours(0,0,0,0); // habit creationg date in millisecond
+        const updateTimeLimit = recordDate + (1000*60*60*24*7); // record date + 7 days
 
-        
+        if(recordDate < habitCreationDate || updateTimeLimit < today){
+            return res.status(400).json({
+                message: "Not allowed to update status which is before creation of habit or records of day 7 days before",
+                status: "failure",
+                data: []
+            });
+        }
 
+        // we find habit using habit id furether finds record having record id then we set founded record status with new status
         const newRecord = await Habit.updateOne({_id: habitId, 'records._id': recordsId},{$set: {'records.$.status': newStatus}});
 
         return res.status(200).json({
@@ -210,5 +246,51 @@ module.exports.updateStatus = async function (req, res) {
             data: []
         })
     }
+}
+
+
+/**
+ * delete action is used for deleteing habit from the DB
+ * takes the habit id from request body and user id from request
+ * finds habit using habit id if we didn't get habit or the owner of habit and requested user doesn't 
+ * return respose with massage unauthorized request
+ * if everything is okay we find user and remove habit id from habits array of user
+ * next we delete habit using habit id
+ * return response with message deleted successfully
+ */
+module.exports.delete = async function(req, res){
+    
+    try {
+        const {habitId} = req.body;
+        const userId = req.user.id;
+
+        const habit = await Habit.findById(habitId);
+
+        if(!habit | habit.userId != userId){
+            return res.status(400).json({
+                message: "unauthorized request",
+                status: "failure",
+                data: []
+            });
+        }
+
+        await User.findByIdAndUpdate(userId, {$pull: {habits: habitId}});
+        await Habit.findByIdAndDelete(habitId);
+
+        return res.status(200).json({
+            message: "habit deleted successfully",
+            status: "successfull",
+            data: []
+        });
+
+    } catch (error) {
+        console.log("Error: delete habit ", error);
+        res.status(500).json({
+            message: "Internal Server Error",
+            status: "failure",
+            data: []
+        });
+    }
+
 }
 
