@@ -157,6 +157,9 @@ module.exports.updateTitle = async function (req, res) {
         //herer {new: true} -> returns newly updated habit
         const updatedHabit = await Habit.findByIdAndUpdate(habitId, { title: newTitle }, {new: true});
 
+        const trimedRecords = await returnLastSevenEntries(updatedHabit.records);
+        updatedHabit.records = trimedRecords;
+
         return res.status(200).json({
             message: "successfully changed title",
             status: "successful",
@@ -266,7 +269,7 @@ module.exports.delete = async function(req, res){
 
         const habit = await Habit.findById(habitId);
 
-        if(!habit | habit.userId != userId){
+        if(!habit || habit.userId != userId){
             return res.status(400).json({
                 message: "unauthorized request",
                 status: "failure",

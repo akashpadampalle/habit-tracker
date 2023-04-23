@@ -1,5 +1,31 @@
 #layout-header{
-    background: lightskyblue;
-    position: sticky;
-    top: 0;
+    background: rgb(188, 177, 250);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 10px;
+}
+
+#header-website-name {
+    font-size: 2rem;
+    font-weight: bolder;
+    text-decoration: none;
+    color: rgb(41, 38, 38);
+    background: rgb(164, 149, 247);
+    padding: 0 4px;
+    border-radius: 5px;
+}
+
+.user-name{
+    font-size: 1.5rem;
+}
+
+#logout-icon{
+    font-size: 1.2rem;
+    padding: 0 6px;
+}
+
+.header-right-item > *{
+    padding: 0 5px;
 }

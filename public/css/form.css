@@ -1,11 +1,44 @@
-form > input {
-    padding: 4px;
-    margin: 4px;
-    border: 1px solid gray;
+.form-body{
+    min-width: 300px;
+    max-width: 500px;
+    width: 60%;
+    text-align: center;
+    background: white;
+
+    padding: 30px 10px;
+    margin: 40px auto;
+
+    border-radius: 15px;
+    box-shadow: 0 0 10px 2px gray;
+}
+
+.form-body .title{
+    font-size: 1.8rem;
+    font-weight: bold;
+    padding: 10px;
+}
+
+.form-body input {
+    display: block;
+    margin: 5px auto;
+    padding: 5px;
+    width: 80%;
+    text-align: center;
+
+}
+
+.form-body input[type='submit']{
+    min-width: min-content;
+    padding: 10px;
+    margin: 10px auto;
+    width: 20%;
     border-radius: 5px;
+    color: black;
+    border: 1px solid black;
+    background: rgb(188, 177, 250);
+    transition: background 0.1s ease-in-out;
 }
 
-form > input[type=submit]{
-    background: greenyellow;
+.form-body input[type='submit']:hover{
+    background: rgb(164, 149, 247);
 }
-

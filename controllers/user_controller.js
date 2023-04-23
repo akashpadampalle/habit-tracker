@@ -33,10 +33,8 @@ module.exports.signup = async function (req, res){
 }
 
 module.exports.logout = function(req, res){
-    const username = req.user;
     req.logout(function (err){
         if(err) { return console.log("unable to logout -> ", username); }
-        console.log(username, "logout successfull");
         res.redirect('/');
     });
 }

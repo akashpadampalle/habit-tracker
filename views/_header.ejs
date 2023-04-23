@@ -1,12 +1,16 @@
 <div id="layout-header">
-    <a href="/">Habit tracker</a>
+    <a id="header-website-name" href="/"><i class="fa-solid fa-house"></i> <span>HabitTracker</span> </a>
 
     <% if(locals.user) { %>
-        <div>
-            <span> <% user.name %> </span>
-
-            <!-- TODO:  change the signout link-->
-            <a href="/users/logout"> logout </a>
+        <div class="header-right-item">
+            <span class="user-name"> <%= user.name %> </span>
+            <a href="/users/logout" id="logout-icon" class="icon"> <i class="fa-solid fa-right-from-bracket"></i> </a>
+        </div>
+    <% } else{%>
+        <div class="header-right-item">
+            <a href="/login">Login</a>
+            <span>|</span>
+            <a href="/signup">Signup</a>
         </div>
     <% } %>
 </div>

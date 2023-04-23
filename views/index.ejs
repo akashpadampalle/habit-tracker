@@ -1,16 +1,72 @@
-<link rel="stylesheet" href="/css/style.css">
 <main id="main-body">
     <% if (locals.user) { %>
-       <h1> <%= user.name %> </h1>
-       <%- include('form_create_habit.ejs') %>
-       <ol id="habit-list">
-       </ol>
+        <link rel="stylesheet" href="/css/habits.css">
+        <main id="main-body">
+            <div class="create-habit-container">
+                <input type="text" id="input-habit-title" placeholder="enter habit"> 
+                <button onclick="createHabit()">create</button>
+            </div>
 
-       <script src="/js/main.js"></script>
+            <div class="habit-list-container">
+
+                <!-- template to create habit item -->
+
+                <!-- <div class="habit-item" id="habid-id">
+                    <div class="habit-number">1</div>
+                    <div class="habit-containt" data-id="habit-id" >
+                        <div class="habit-header">
+                            <div class="habit-title">
+                                <input class="habit-title-input" type="text" value="Drink lot of Water" disabled>
+                                <button class="save-habit-title-btn">save</button>
+                            </div>
+                            <div class="habit-tools">
+                                <button class="edit" title="edit habit title"><i class="fa-solid fa-pen-to-square"></i></button>
+                                <button class="delete" title="delete habit"><i class="fa-solid fa-trash"></i></button>
+                                <button class="expand" title="expand habit records"><i class="fa-solid fa-angle-down"></i></button>
+                            </div>
+                        </div>
+                        <div class="habit-record-container">
+                            <div class="habit-record-item" id="record-id-1">
+                                <div class="habit-record-date">15</div>
+                                <div class="habit-record-status habit-record-status-none">none <i class="fa-sharp fa-solid fa-ghost"></i></i></div>
+                            </div>
+                            <div class="habit-record-item" id="record-id-2">
+                                <div class="habit-record-date">16</div>
+                                <div class="habit-record-status habit-record-status-done">done <i class="fa-solid fa-clipboard-check"></i></div>
+                            </div>
+                            <div class="habit-record-item" id="record-id-3">
+                                <div class="habit-record-date">17</div>
+                                <div class="habit-record-status habit-record-status-not-done">not done <i class="fa-sharp fa-solid fa-clipboard-question"></i></div>
+                            </div> 
+                            <div class="habit-record-item" id="record-id-1">
+                                <div class="habit-record-date">18</div>
+                                <div class="habit-record-status habit-record-status-none">none <i class="fa-sharp fa-solid fa-ghost"></i></i></div>
+                            </div>
+                            <div class="habit-record-item" id="record-id-1">
+                                <div class="habit-record-date">19</div>
+                                <div class="habit-record-status habit-record-status-none">none <i class="fa-sharp fa-solid fa-ghost"></i></i></div>
+                            </div>
+                            <div class="habit-record-item" id="record-id-1">
+                                <div class="habit-record-date">20</div>
+                                <div class="habit-record-status habit-record-status-none">none <i class="fa-sharp fa-solid fa-ghost"></i></i></div>
+                            </div>
+                            <div class="habit-record-item" id="record-id-1">
+                                <div class="habit-record-date">21</div>
+                                <div class="habit-record-status habit-record-status-none">none <i class="fa-sharp fa-solid fa-ghost"></i></i></div>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+
+            <script src="/js/create_habit.js"></script>
+            <script src="/js/habit_events.js"></script>
+        </main>
     <% } else { %>
-        <div>
-            <a href="/login"> Login </a>
-            <a href="/signup"> Signup </a>
+        <div class="quote-container">
+            <div class="quote">Motivation is what gets you started. Habit is what keeps you going</div>
+            <div class="para">Creating a new habit can be challenging, but remember that every small step you take brings you closer to your goal. With time and consistency, your new habit will become a natural part of your routine, and you'll be one step closer to living the life you envision for yourself. Keep going, you got this!</div>
+            <a href="/signup">Get started <i class="fa-sharp fa-solid fa-arrow-right"></i></i> </a> 
         </div>
     <% } %>
 </main>
