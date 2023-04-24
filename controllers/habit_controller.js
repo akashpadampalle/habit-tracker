@@ -145,6 +145,14 @@ module.exports.updateTitle = async function (req, res) {
         const { newTitle, habitId } = req.body;
         const userId = req.user.id;
 
+        if(newTitle == ''){
+            return res.status(400).json({
+                message: "empty title is not allowed",
+                status: "failure",
+                data: []
+            });
+        }
+
         const habit = await Habit.findById(habitId);
         if (habit.userId != userId) {
             return res.status(401).json({
@@ -237,7 +245,7 @@ module.exports.updateStatus = async function (req, res) {
 
         return res.status(200).json({
             message: "successfully changed status",
-            status: "successfull",
+            status: "successful",
             data: [newRecord]
         });
 
@@ -282,7 +290,7 @@ module.exports.delete = async function(req, res){
 
         return res.status(200).json({
             message: "habit deleted successfully",
-            status: "successfull",
+            status: "successful",
             data: []
         });
 

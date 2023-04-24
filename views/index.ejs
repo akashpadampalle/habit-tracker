@@ -1,7 +1,6 @@
 <main id="main-body">
     <% if (locals.user) { %>
         <link rel="stylesheet" href="/css/habits.css">
-        <main id="main-body">
             <div class="create-habit-container">
                 <input type="text" id="input-habit-title" placeholder="enter habit"> 
                 <button onclick="createHabit()">create</button>
@@ -61,7 +60,6 @@
 
             <script src="/js/create_habit.js"></script>
             <script src="/js/habit_events.js"></script>
-        </main>
     <% } else { %>
         <div class="quote-container">
             <div class="quote">Motivation is what gets you started. Habit is what keeps you going</div>

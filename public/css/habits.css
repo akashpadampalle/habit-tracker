@@ -32,6 +32,7 @@
 }
 
 .habit-list-container .habit-item {
+    min-width: 500px;
     margin: 20px;
     background: white;
     border-radius: 5px;
@@ -66,7 +67,7 @@
 
 .habit-header .habit-title .habit-title-input{
     font-size: 1.2rem;
-    border-right: none;
+    border: 1px solid black;
 }
 
 .habit-header .habit-title .habit-title-input:disabled{

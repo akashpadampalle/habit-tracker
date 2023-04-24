@@ -1,6 +1,3 @@
-
-console.log("create habit script loaded");
-
 const inputBox = document.getElementById('input-habit-title');
 
 async function createHabit (){
@@ -18,5 +15,11 @@ async function createHabit (){
 
 
     // TODO: prepend data into hait-list-container
-    console.log(data);
+    if(data.status == 'successful'){
+        habits.push(data.data[0]);
+        renderHabits();
+    }else{
+        console.log('Error: ', data.message);
+    }
+
 }
