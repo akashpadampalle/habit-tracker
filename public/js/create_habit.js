@@ -1,5 +1,8 @@
 const inputBox = document.getElementById('input-habit-title');
 
+
+// function to add new habits 
+
 async function createHabit (){
 
     const value = inputBox.value;
@@ -13,8 +16,6 @@ async function createHabit (){
 
     const data = await res.json();
 
-
-    // TODO: prepend data into hait-list-container
     if(data.status == 'successful'){
         habits.push(data.data[0]);
         renderHabits();

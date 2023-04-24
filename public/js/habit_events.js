@@ -1,7 +1,10 @@
 let habits = [];
 const habitListContainer = document.querySelector('.habit-list-container');
 
-
+/**
+ * getAllHabitsOfuser fetches all the habits of loggedin user
+ * and render it using renderHabits function
+ */
 async function getAllHabitsOfUser() {
     const res = await fetch('/habits/get', { method: 'GET' });
 
@@ -17,6 +20,10 @@ async function getAllHabitsOfUser() {
 
 getAllHabitsOfUser();
 
+
+/**
+ * renderHabits uses habits array and predefine template to populate habits
+ */
 function renderHabits() {
 
     habitListContainer.innerHTML = '';
@@ -93,7 +100,11 @@ function renderHabits() {
 }
 
 
-
+/**
+ * we have used event deligation 
+ * we just set event listner on habits container
+ * and then perform actions according to targeted button
+ */
 habitListContainer.addEventListener('click', async (e) => {
     let target = e.target;
 
@@ -112,6 +123,7 @@ habitListContainer.addEventListener('click', async (e) => {
     if(target.classList.contains('habit-record-item')){ updateRecordStatus(target); return;}
 })
 
+// function to use delete habit from page and DB
 async function deleteHabit(target){
     const habitId = target.dataset.id;
     const index = target.dataset.index;
@@ -133,6 +145,8 @@ async function deleteHabit(target){
     }
 }
 
+
+// toggle records is functions to show or hide records container of habit
 function toggleRecords(target) {
     const recordContainer = target.parentElement.parentElement.nextElementSibling;
     const displayValue = window.getComputedStyle(recordContainer).getPropertyValue("display");
@@ -141,7 +155,7 @@ function toggleRecords(target) {
     else { recordContainer.style.display = "none"; }
 }
 
-
+// togle title box method is use to unable / disable title editing of habit
 function toggleTitleBox(target){
     const habitTitleInpuBox = target.parentElement.previousElementSibling.firstElementChild;
     const saveHabitTitleBtn = target.parentElement.previousElementSibling.lastElementChild;
@@ -156,7 +170,7 @@ function toggleTitleBox(target){
     }
 }
 
-
+// function to edit title
 async function editTitle(target){
     const titleBox = target.previousElementSibling;
     const title = titleBox.value;
@@ -184,6 +198,7 @@ async function editTitle(target){
     target.style.display = 'none';
 }
 
+// update record of perticular day toggle between none, done, not done
 async function updateRecordStatus(target){
     const recordsId = target.getAttribute('id');
     const habitId = target.parentElement.dataset.habitid;
