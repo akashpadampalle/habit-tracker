@@ -23,7 +23,7 @@
 ### 7 Click the "password" field.
 ![Aspose Words 9f07a518-310c-48d1-aca7-79bc696887ec 009](https://github.com/akashpadampalle/habit-tracker/assets/45806342/15cf829a-2625-46df-abd5-271836fb8c12)
 
-8 Click the "confirm password" field.
+### 8 Click the "confirm password" field.
 ![Aspose Words 9f07a518-310c-48d1-aca7-79bc696887ec 010](https://github.com/akashpadampalle/habit-tracker/assets/45806342/fc685a15-5554-41e5-b461-2919f6ddc864)
 
 
