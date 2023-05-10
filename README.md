@@ -17,7 +17,7 @@
 ![Aspose Words 9f07a518-310c-48d1-aca7-79bc696887ec 008](https://github.com/akashpadampalle/habit-tracker/assets/45806342/683702b1-5aea-4aa6-90ed-b4f9233da8d0)
 
 
-### 6 Type your unique email![]
+### 6 Type your unique email
 
 
 ### 7 Click the "password" field.
@@ -57,7 +57,7 @@
 
 ### 19 Type new title
 
-### 20 Click "save"!
+### 20 Click "save"
 ![Aspose Words 9f07a518-310c-48d1-aca7-79bc696887ec 019](https://github.com/akashpadampalle/habit-tracker/assets/45806342/75321647-9547-4ce6-9240-80a704529c4e)
 
 
