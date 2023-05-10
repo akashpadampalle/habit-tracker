@@ -10,26 +10,26 @@ const MongoStore = require('connect-mongo');
 const cookieParser = require('cookie-parser');
 
 
-const PORT = process.env.PORT || 8000;
+const PORT = process.env.HT_PORT;
 
 const app = express();
 
 // setting up encoding parsers
 app.use(express.json());
-app.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 // setting up session 
 app.use(session({
     name: 'habit tracker',
-    secret: 'somesecretcode',
+    secret: proocess.env.HT_SESSION_SECRET,
     saveUninitialized: false,
     resave: false,
     cookie: {
-        maxAge: (1000*60*60*24) // saving cookie for maximum one days
+        maxAge: (1000 * 60 * 60 * 24) // saving cookie for maximum one days
     },
     store: MongoStore.create({
-        mongoUrl: 'mongodb://127.0.0.1:27017/habit-tacker',
+        mongoUrl: process.env.HT_DB_URI,
         collectionName: 'sessions',
         autoRemove: 'native'
     })
@@ -57,6 +57,6 @@ app.set('layout extractScripts', true); // this will extract style from body of 
 app.use('/', require('./routes/index'));
 
 app.listen(PORT, (err) => {
-    if(err){ console.log(err); return; }
+    if (err) { console.log(err); return; }
     console.log(`server is up and running :: PORT ${PORT}`)
 });
