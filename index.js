@@ -22,7 +22,7 @@ app.use(cookieParser());
 // setting up session 
 app.use(session({
     name: 'habit tracker',
-    secret: proocess.env.HT_SESSION_SECRET,
+    secret: process.env.HT_SESSION_SECRET,
     saveUninitialized: false,
     resave: false,
     cookie: {

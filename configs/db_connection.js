@@ -6,8 +6,8 @@ const mongoose = require('mongoose');
 
 const uri = process.env.HT_DB_URI;
 
-// connecting to database
-// mongoose.connect(process.env.db_URL);
+// connecting to databaseR
+// mongoose.connect(process.env.HT_DB_URI);
 mongoose.connect(uri);
 
 // getting connection to constant
