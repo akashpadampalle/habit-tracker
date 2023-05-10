@@ -76,10 +76,10 @@
 ![Aspose Words 9f07a518-310c-48d1-aca7-79bc696887ec 023](https://github.com/akashpadampalle/habit-tracker/assets/45806342/d80bd8c8-13e1-4ad5-81b9-ed4b654f0836)
 
 
-25 Click delete button to delete habit
+### 25 Click delete button to delete habit
 ![Aspose Words 9f07a518-310c-48d1-aca7-79bc696887ec 024](https://github.com/akashpadampalle/habit-tracker/assets/45806342/9db46f5c-8e49-4f01-a7cd-4683c8c93308)
 
 
-26 Click here to signout
+### 26 Click here to signout
 ![Aspose Words 9f07a518-310c-48d1-aca7-79bc696887ec 025](https://github.com/akashpadampalle/habit-tracker/assets/45806342/f95afcd0-0ece-45c3-8351-4cb1e195d720)
 
