@@ -11,7 +11,7 @@ A habit tracking web app is a digital tool designed to help individuals track an
 
 **Client:** 
 ejs, ![ejs](https://github.com/akashpadampalle/habit-tracker/assets/45806342/2e9c7657-3933-4f39-b44f-00e6c86e7638)
-css, ![css](https://github.com/akashpadampalle/habit-tracker/assets/45806342/67cb3231-76ce-4f9e-94f8-72fbff0c43f8)
+css, ![css](https://github.com/akashpadampalle/habit-tracker/assets/45806342/228fba46-5026-43d3-8d9e-b614aef9c135)
 javascript![javascript](https://github.com/akashpadampalle/habit-tracker/assets/45806342/4488c72a-629f-4c60-8329-4d37af04eadf)
 
 
