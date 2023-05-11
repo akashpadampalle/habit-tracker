@@ -19,10 +19,11 @@ A habit tracking web app is a digital tool designed to help individuals track an
 
 
 **Server:** 
-Node, ![nodejs](https://github.com/akashpadampalle/habit-tracker/assets/45806342/6c4aaecf-20b2-444d-ae90-7130d31586bb)
-Express, ![expressjs](https://github.com/akashpadampalle/habit-tracker/assets/45806342/caa0ef59-cfc3-45a0-9258-497653e6d17c)
-mongoose,![mongoose](https://github.com/akashpadampalle/habit-tracker/assets/45806342/e2e0bccc-4a9b-4a0d-a42f-226be3928d22)
-passport ![passport](https://github.com/akashpadampalle/habit-tracker/assets/45806342/e5857f3b-f1a2-47c1-9a1e-6d3049199d18)
+
+| ![nodejs](https://github.com/akashpadampalle/habit-tracker/assets/45806342/6c4aaecf-20b2-444d-ae90-7130d31586bb) | ![expressjs](https://github.com/akashpadampalle/habit-tracker/assets/45806342/caa0ef59-cfc3-45a0-9258-497653e6d17c)     | ![mongoose](https://github.com/akashpadampalle/habit-tracker/assets/45806342/e2e0bccc-4a9b-4a0d-a42f-226be3928d22)                      | ![passport](https://github.com/akashpadampalle/habit-tracker/assets/45806342/e5857f3b-f1a2-47c1-9a1e-6d3049199d18) |
+| :-------- | :------- | :------------------------------- | :-------- |
+| `nidejs`   | `express` | `mongoose` | `passportjs`   |
+
 
 
 
