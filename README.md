@@ -10,16 +10,17 @@ A habit tracking web app is a digital tool designed to help individuals track an
 ## Tech Stack
 
 **Client:** 
-ejs, ![ejs](https://github.com/akashpadampalle/habit-tracker/assets/45806342/2e9c7657-3933-4f39-b44f-00e6c86e7638)
+ejs, ![ejs](https://github.com/akashpadampalle/habit-tracker/assets/45806342/50ae74f1-f883-46f1-a5ac-e85fa13a660c)
+
 css, ![css](https://github.com/akashpadampalle/habit-tracker/assets/45806342/228fba46-5026-43d3-8d9e-b614aef9c135)
-javascript![javascript](https://github.com/akashpadampalle/habit-tracker/assets/45806342/4488c72a-629f-4c60-8329-4d37af04eadf)
+javascript ![javascript](https://github.com/akashpadampalle/habit-tracker/assets/45806342/44a16bc9-02ee-4235-85a9-354d9ba4f555)
 
 
 **Server:** 
 Node, ![nodejs](https://github.com/akashpadampalle/habit-tracker/assets/45806342/6c4aaecf-20b2-444d-ae90-7130d31586bb)
 Express, ![expressjs](https://github.com/akashpadampalle/habit-tracker/assets/45806342/caa0ef59-cfc3-45a0-9258-497653e6d17c)
 mongoose,![mongoose](https://github.com/akashpadampalle/habit-tracker/assets/45806342/e2e0bccc-4a9b-4a0d-a42f-226be3928d22)
-passport![passport-seeklogo com](https://github.com/akashpadampalle/habit-tracker/assets/45806342/f6fab916-58d5-4c0f-9462-51a5375dc7f3)
+passport ![passport](https://github.com/akashpadampalle/habit-tracker/assets/45806342/e5857f3b-f1a2-47c1-9a1e-6d3049199d18)
 
 
 
